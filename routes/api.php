@@ -13,12 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', 'API\RegisterController@register');
-
-
-Route::middleware('auth:api')->group( function () {
-	Route::resource('products', 'API\ProductController');
+Route::group(['namespace' => 'API'], function () {
+		Route::post('register', ['uses' => 'AuthController@register', 'as' => 'api.auth.getToken']);
+		Route::post('login', ['uses' => 'AuthController@login', 'as' => 'api.auth.getToken']);
+		Route::get('facebook/{token}', ['uses' => 'FacebookController@getToken', 'as' => 'api.facebook']);
+		Route::get('google/{token}', ['uses' => 'GoogleController@getToken', 'as' => 'api.google']);
 });
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
