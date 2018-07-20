@@ -36,4 +36,8 @@ Route::group(['namespace' => 'Api'], function() {
         Route::get('', 'RoomController@index')->name('api.room');
         Route::post('space', 'RoomController@bySpace')->name('api.room.space');
     });
+
+    Route::prefix('box')->group(function() {
+        Route::get('random', 'BoxController@randomChoice')->name('api.box.random');
+    });
 });

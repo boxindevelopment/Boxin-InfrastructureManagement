@@ -11,4 +11,6 @@ class Box extends Model
     protected $fillable = [
         'name', 'barcode', 'location', 'size', 'price'
     ];
+
+    protected $hidden = ['created_at', 'updated_at'];
 }
