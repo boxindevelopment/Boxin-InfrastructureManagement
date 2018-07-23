@@ -20,6 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function() {
     Route::prefix('area')->group(function() {
         Route::get('', 'AreaController@index')->name('api.area');
+        Route::post('search', 'AreaController@search')->name('api.area.search');
+    });
+
+    Route::prefix('city')->group(function() {
+        Route::get('', 'CityController@index')->name('api.city');
+        Route::post('search', 'CityController@search')->name('api.city.search');
     });
 
     Route::prefix('warehouse')->group(function() {

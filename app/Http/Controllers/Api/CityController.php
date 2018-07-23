@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AreaResource;
-use App\Model\Area;
+use App\Http\Resources\CityResource;
+use App\Model\City;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class CityController extends Controller
 {
     public function index()
     {
-        $areas = Area::all();
-        if(count($areas) != 0) {
-            $data = AreaResource::collection($areas);
+        $cities = City::all();
+        if(count($cities) != 0) {
+            $data = CityResource::collection($cities);
 
             return response()->json([
                 'status' => true,
@@ -29,9 +29,9 @@ class AreaController extends Controller
 
     public function search(Request $request)
     {
-        $areas = Area::search($request->q)->get();
-        if(count($areas) != 0) {
-            $data = AreaResource::collection($areas);
+        $cities = City::search($request->q)->get();
+        if(count($cities) != 0) {
+            $data = CityResource::collection($cities);
 
             return response()->json([
                 'status' => true,

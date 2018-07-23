@@ -15,7 +15,7 @@ class Area extends Model
         'city_id', 'name'
     ];
 
-    protected $searchable = ['id', 'name', 'city' => ['id', 'name']];
+    protected $searchable = ['id', 'name'];
 
     public function city()
     {
