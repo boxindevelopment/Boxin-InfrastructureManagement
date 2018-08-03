@@ -48,4 +48,23 @@ class RoomController extends Controller
             'message' => 'Data not found'
         ]);
     }
+
+    public function bySpaceId($space_id)
+    {
+        $rooms = Room::where('space_id', $space_id)->get();
+        if(count($rooms) != 0) {
+            $data = RoomResource::collection($rooms);
+            
+            return response()->json([
+                'status' => true,
+                'data' => $data
+            ]);
+        }
+        
+        return response()->json([
+            'status' => false,
+            'message' => 'Data not found'
+        ]);
+    }
+
 }

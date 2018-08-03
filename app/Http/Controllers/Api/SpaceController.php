@@ -48,4 +48,22 @@ class SpaceController extends Controller
             'date' => 'Data not found'
         ]);
     }
+
+    public function byWarehouseId($warehouse_id)
+    {
+        $spaces = Space::where('warehouse_id', $warehouse_id)->get();
+        if(count($spaces) != 0) {
+            $data = SpaceResource::collection($spaces);
+
+            return response()->json([
+                'status' => true,
+                'data' => $data
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Data not found'
+        ]);
+    }
 }

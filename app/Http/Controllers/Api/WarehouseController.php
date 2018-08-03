@@ -48,4 +48,22 @@ class WarehouseController extends Controller
             'message' => 'Data not found'
         ]);
     }
+    
+    public function byAreaId($area_id)
+    {
+        $warehouses = Warehouse::where('area_id', $area_id)->get();
+        if($warehouses->count() != 0) {
+            $data = WarehouseResource::collection($warehouses);
+
+            return response()->json([
+                'status' => true,
+                'data' => $data
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Data not found'
+        ]);
+    }
 }

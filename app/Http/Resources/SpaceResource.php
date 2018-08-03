@@ -17,7 +17,7 @@ class SpaceResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'warehouse' => $this->warehouse != null ? $this->warehouse->name : null
+            'warehouse' => new WarehouseResource($this->warehouse)
         ];
     }
 }
