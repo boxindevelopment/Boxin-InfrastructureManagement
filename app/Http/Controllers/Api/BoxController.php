@@ -12,7 +12,7 @@ class BoxController extends Controller
 {
     public function index()
     {
-        $box = Box::all();
+        $box = Box::where('deleted_at', NULL)->get();
         if(count($box) != 0) {
             $data = BoxResource::collection($box);
             
@@ -30,7 +30,7 @@ class BoxController extends Controller
 
     public function bySpace(Request $request)
     {
-        $space = Space::search($request->space)->first();
+        $space = Space::search($request->space)->where('deleted_at', NULL)->first();
         if($space != null) {
             $box = Box::where('space_id', $space->id)->get();
             if(count($box) != 0) {
@@ -51,7 +51,7 @@ class BoxController extends Controller
 
     public function bySpaceId($space_id)
     {
-        $box = Box::where('space_id', $space_id)->get();
+        $box = Box::where('space_id', $space_id)->where('deleted_at', NULL)->get();
         if(count($box) != 0) {
             $data = BoxResource::collection($box);
             
@@ -69,7 +69,7 @@ class BoxController extends Controller
 
     public function randomChoice()
     {
-        $box = Box::all();
+        $box = Box::where('deleted_at', NULL)->get();
         if(count($box) != 0) {
             $random = array_random($box->toArray(), 1);
 

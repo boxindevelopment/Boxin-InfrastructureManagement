@@ -12,7 +12,7 @@ class SpaceController extends Controller
 {
     public function index()
     {
-        $spaces = Space::all();
+        $spaces = Space::where('deleted_at', NULL)->get();
         if(count($spaces) != 0) {
             $data = SpaceResource::collection($spaces);
 
@@ -30,7 +30,7 @@ class SpaceController extends Controller
 
     public function byWarehouse(Request $request)
     {
-        $warehouse = Warehouse::search($request->warehouse)->first();
+        $warehouse = Warehouse::search($request->warehouse)->where('deleted_at', NULL)->first();
         if($warehouse != null) {
             $spaces = Space::where('warehouse_id', $warehouse->id)->get();
             if(count($spaces) != null) {
@@ -51,7 +51,7 @@ class SpaceController extends Controller
 
     public function byWarehouseId($warehouse_id)
     {
-        $spaces = Space::where('warehouse_id', $warehouse_id)->get();
+        $spaces = Space::where('warehouse_id', $warehouse_id)->where('deleted_at', NULL)->get();
         if(count($spaces) != 0) {
             $data = SpaceResource::collection($spaces);
 

@@ -12,7 +12,7 @@ class WarehouseController extends Controller
 {
     public function index()
     {
-        $warehouses = Warehouse::all();
+        $warehouses = Warehouse::where('deleted_at', NULL)->get();
         if($warehouses->count() != 0) {
             $data = WarehouseResource::collection($warehouses);
 
@@ -30,9 +30,9 @@ class WarehouseController extends Controller
 
     public function byLocation(Request $request)
     {
-        $area = Area::search($request->area)->first();
+        $area = Area::search($request->area)->where('deleted_at', NULL)->first();
         if($area != null) {
-            $warehouses = Warehouse::where('area_id', $area->id)->get();
+            $warehouses = Warehouse::where('area_id', $area->id)->where('deleted_at', NULL)->get();
             if(count($warehouses) != null) {
                 $data = WarehouseResource::collection($warehouses);
 
@@ -51,7 +51,7 @@ class WarehouseController extends Controller
     
     public function byAreaId($area_id)
     {
-        $warehouses = Warehouse::where('area_id', $area_id)->get();
+        $warehouses = Warehouse::where('area_id', $area_id)->where('deleted_at', NULL)->get();
         if($warehouses->count() != 0) {
             $data = WarehouseResource::collection($warehouses);
 

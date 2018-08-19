@@ -11,7 +11,7 @@ class AreaController extends Controller
 {
     public function index()
     {
-        $areas = Area::all();
+        $areas = Area::where('deleted_at', NULL)->get();
         if(count($areas) != 0) {
             $data = AreaResource::collection($areas);
 
@@ -29,7 +29,7 @@ class AreaController extends Controller
 
     public function search(Request $request)
     {
-        $areas = Area::search($request->q)->get();
+        $areas = Area::search($request->q)->where('deleted_at', NULL)->get();
         if(count($areas) != 0) {
             $data = AreaResource::collection($areas);
 
@@ -48,7 +48,7 @@ class AreaController extends Controller
     public function byCityId($city_id)
     {
 
-        $areas = Area::where('city_id', $city_id)->get();
+        $areas = Area::where('city_id', $city_id)->where('deleted_at', NULL)->get();
         if(count($areas) != 0) {
             $data = AreaResource::collection($areas);
 

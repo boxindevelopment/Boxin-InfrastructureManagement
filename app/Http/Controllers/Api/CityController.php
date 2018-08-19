@@ -11,7 +11,7 @@ class CityController extends Controller
 {
     public function index()
     {
-        $cities = City::all();
+        $cities = City::where('deleted_at', NULL)->get();
         if(count($cities) != 0) {
             $data = CityResource::collection($cities);
 
@@ -29,7 +29,7 @@ class CityController extends Controller
 
     public function search(Request $request)
     {
-        $cities = City::search($request->q)->get();
+        $cities = City::search($request->q)->where('deleted_at', NULL)->get();
         if(count($cities) != 0) {
             $data = CityResource::collection($cities);
 
