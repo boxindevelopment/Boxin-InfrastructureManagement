@@ -31,6 +31,7 @@ Route::group(['namespace' => 'API'], function () {
 Route::group(['namespace' => 'Api'], function() {
     Route::prefix('city')->group(function() {
         Route::get('', 'CityController@index')->name('api.city');
+        Route::get('/all', 'CityController@all')->name('api.city.all');
         Route::post('search', 'CityController@search')->name('api.city.search');
     });
 
