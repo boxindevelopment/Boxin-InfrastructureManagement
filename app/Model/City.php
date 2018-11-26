@@ -12,13 +12,14 @@ class City extends Model
     protected $table = 'cities';
 
     protected $fillable = [
-        'name'
+        'name', 'id_name'
     ];
 
     protected $searchable = ['id', 'name'];
 
-    public function areas()
+    public function area()
     {
         return $this->hasMany('App\Model\Area', 'city_id', 'id');
     }
+    
 }

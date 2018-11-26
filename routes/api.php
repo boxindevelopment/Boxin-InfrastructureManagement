@@ -41,16 +41,9 @@ Route::group(['namespace' => 'Api'], function() {
         Route::get('{city_id}', 'AreaController@byCityId')->name('api.area.byCityId');
     });    
 
-    Route::prefix('warehouse')->group(function() {
-        Route::get('', 'WarehouseController@index')->name('api.warehouse');
-        Route::post('location', 'WarehouseController@byLocation')->name('api.warehouse.location');
-        Route::get('{area_id}', 'WarehouseController@byAreaId')->name('api.warehouse.byAreaId');
-    });
-
     Route::prefix('space')->group(function() {
         Route::get('', 'SpaceController@index')->name('api.space');
-        Route::post('warehouse', 'SpaceController@byWarehouse')->name('api.space.warehouse');
-        Route::get('{warehouse_id}', 'SpaceController@byWarehouseId')->name('api.warehouse.byWarehouseId');
+        Route::get('{area_id}', 'SpaceController@byAreaId')->name('api.space.byAreaId');
     });
 
     Route::prefix('room')->group(function() {

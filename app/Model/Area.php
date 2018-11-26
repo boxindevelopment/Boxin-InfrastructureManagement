@@ -12,7 +12,7 @@ class Area extends Model
     protected $table = 'areas';
 
     protected $fillable = [
-        'city_id', 'name'
+        'city_id', 'name', 'id_name'
     ];
 
     protected $searchable = ['id', 'name'];
@@ -22,8 +22,4 @@ class Area extends Model
         return $this->belongsTo('App\Model\City', 'city_id', 'id');
     }
 
-    public function warehouses()
-    {
-        return $this->hasMany('App\Model\Warehouse', 'area_id', 'id');
-    }
 }

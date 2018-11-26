@@ -28,30 +28,9 @@ class SpaceController extends Controller
         ]);
     }
 
-    public function byWarehouse(Request $request)
+    public function byAreaId($area_id)
     {
-        $warehouse = Warehouse::search($request->warehouse)->where('deleted_at', NULL)->first();
-        if($warehouse != null) {
-            $spaces = Space::where('warehouse_id', $warehouse->id)->get();
-            if(count($spaces) != null) {
-                $data = SpaceResource::collection($spaces);
-
-                return response()->json([
-                    'status' => true,
-                    'data' => $data
-                ]);
-            }
-        }
-
-        return response()->json([
-            'status' => false,
-            'date' => 'Data not found'
-        ]);
-    }
-
-    public function byWarehouseId($warehouse_id)
-    {
-        $spaces = Space::where('warehouse_id', $warehouse_id)->where('deleted_at', NULL)->get();
+        $spaces = Space::where('area_id', $area_id)->where('deleted_at', NULL)->get();
         if(count($spaces) != 0) {
             $data = SpaceResource::collection($spaces);
 

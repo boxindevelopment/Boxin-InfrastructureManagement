@@ -2,28 +2,24 @@
 
 namespace App\Model;
 
-use App\Core\Model\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Space extends Model
 {
-    use Searchable;
 
     protected $table = 'spaces';
 
     protected $fillable = [
-        'warehouse_id', 'name'
+        'area_id', 'name', 'lat', 'long', 'id_name', 'types_of_size_id'
     ];
 
-    protected $searchable = ['id', 'name'];
-
-    public function warehouse()
+    public function area()
     {
-        return $this->belongsTo('App\Model\Warehouse', 'warehouse_id', 'id');
+        return $this->belongsTo('App\Model\Area', 'area_id', 'id');
     }
 
-    public function rooms()
+    public function type_size()
     {
-        return $this->hasMany('App\Model\Room', 'space_id', 'id');
+        return $this->belongsTo('App\Model\TypeSize', 'types_of_size_id', 'id');
     }
 }

@@ -17,7 +17,7 @@ class SpaceResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'warehouse' => new WarehouseResource($this->warehouse)
+            'area' => new AreaResource($this->area)
         ];
     }
 }
