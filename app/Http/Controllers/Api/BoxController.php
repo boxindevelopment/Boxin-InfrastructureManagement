@@ -32,7 +32,7 @@ class BoxController extends Controller
     {
         $space = Space::search($request->space)->where('deleted_at', NULL)->first();
         if($space != null) {
-            $box = Box::where('space_id', $space->id)->get();
+            $box = Box::leftJoin('shelves', 'shelves.id', '=', 'boxes.shelves_id')->where('shelves.space_id', $space->id)->get();
             if(count($box) != 0) {
                 $data = BoxResource::collection($box);
 
@@ -51,7 +51,7 @@ class BoxController extends Controller
 
     public function bySpaceId($space_id)
     {
-        $box = Box::where('space_id', $space_id)->where('deleted_at', NULL)->get();
+        $box = Box::leftJoin('shelves', 'shelves.id', '=', 'boxes.shelves_id')->where('shelves.space_id', $space_id)->where('boxes.deleted_at', NULL)->get();
         if(count($box) != 0) {
             $data = BoxResource::collection($box);
             

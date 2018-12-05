@@ -17,7 +17,7 @@ class BoxResource extends JsonResource
         return [
             'id'    => $this->id,
             'name'  => $this->name,
-            'space' => new SpaceResource($this->space)
+            'shelves' => new ShelvesResource($this->shelves)
         ];
     }
 }
