@@ -19,13 +19,6 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'API'], function () {
 
-    //===== BOX ======//
-	
-	//List Box All
-    // Route::get('box', ['uses' => 'BoxesController@index', 'as' => 'boxes.index']);
-    
-    //===== END BOX ======//
-
 });
 
 Route::group(['namespace' => 'Api'], function() {
@@ -44,12 +37,6 @@ Route::group(['namespace' => 'Api'], function() {
     Route::prefix('space')->group(function() {
         Route::get('', 'SpaceController@index')->name('api.space');
         Route::get('{area_id}', 'SpaceController@byAreaId')->name('api.space.byAreaId');
-    });
-
-    Route::prefix('room')->group(function() {
-        Route::get('', 'RoomController@index')->name('api.room');
-        Route::post('space', 'RoomController@bySpace')->name('api.room.space');
-        Route::get('{space_id}', 'RoomController@bySpaceId')->name('api.room.bySpaceId');
     });
 
     Route::prefix('box')->group(function() {
