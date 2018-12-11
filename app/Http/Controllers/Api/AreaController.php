@@ -60,7 +60,7 @@ class AreaController extends Controller
 
         return response()->json([
             'status' => false,
-            'message' => 'Data not found'
+            'message' => 'Coming Soon'
         ]);
     }
 }
