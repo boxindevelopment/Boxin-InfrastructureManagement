@@ -15,9 +15,13 @@ class BoxResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'    => $this->id,
-            'name'  => $this->name,
-            'space' => new SpaceResource($this->space)
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'barcode'           => $this->barcode,
+            'code_shelves'      => $this->code_shelves,
+            'location'          => $this->location,
+            'space'             => new SpaceResource($this->space),
+            'shelves'           => new ShelvesResource($this->shelves)
         ];
     }
 }

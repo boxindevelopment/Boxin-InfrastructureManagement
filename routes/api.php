@@ -62,8 +62,8 @@ Route::group(['namespace' => 'Api'], function() {
         Route::get('', 'BoxController@index')->name('api.box');
         Route::post('space', 'BoxController@bySpace')->name('api.box.space');
         Route::post('shelves', 'BoxController@byShelves')->name('api.box.shelves');
-        Route::get('{space_id}', 'BoxController@bySpaceId')->name('api.box.bySpaceId');
-        Route::get('{shelves_id}', 'BoxController@byShelvesId')->name('api.box.byShelvesId');
         Route::get('random', 'BoxController@randomChoice')->name('api.box.random');
+        Route::get('shelves/{shelves_id}', 'BoxController@byShelvesId')->name('api.box.byShelvesId');
+        Route::get('{space_id}', 'BoxController@bySpaceId')->name('api.box.bySpaceId');
     });
 });
