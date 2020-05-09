@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BoxResource extends JsonResource
+class SpaceSmallResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,10 +17,9 @@ class BoxResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
+            'code_space_small'  => $this->code_space_small,
             'barcode'           => $this->barcode,
-            'code_shelves'      => $this->code_shelves,
             'location'          => $this->location,
-            'space'             => new SpaceResource($this->space),
             'shelves'           => new ShelvesResource($this->shelves)
         ];
     }
