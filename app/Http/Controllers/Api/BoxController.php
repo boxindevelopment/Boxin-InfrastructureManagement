@@ -15,13 +15,13 @@ class BoxController extends Controller
         $box = Box::where('deleted_at', NULL)->get();
         if(count($box) != 0) {
             $data = BoxResource::collection($box);
-            
+
             return response()->json([
                 'status' => true,
                 'data' => $data
             ]);
         }
-        
+
         return response()->json([
             'status' => false,
             'message' => 'Data not found'
@@ -54,13 +54,31 @@ class BoxController extends Controller
         $box = Box::leftJoin('shelves', 'shelves.id', '=', 'boxes.shelves_id')->where('shelves.space_id', $space_id)->where('boxes.deleted_at', NULL)->get();
         if(count($box) != 0) {
             $data = BoxResource::collection($box);
-            
+
             return response()->json([
                 'status' => true,
                 'data' => $data
             ]);
         }
-        
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Data not found'
+        ]);
+    }
+
+    public function byShelvesId($shelves_id)
+    {
+        $box = Box::where('shelves_id', $shelves_id)->where('deleted_at', NULL)->get();
+        if(count($box) != 0) {
+            $data = BoxResource::collection($box);
+
+            return response()->json([
+                'status' => true,
+                'data' => $data
+            ]);
+        }
+
         return response()->json([
             'status' => false,
             'message' => 'Data not found'
