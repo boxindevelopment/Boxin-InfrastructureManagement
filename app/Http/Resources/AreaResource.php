@@ -18,6 +18,8 @@ class AreaResource extends JsonResource
             'id'        => $this->id,
             'name'      => $this->name,
             'id_name'   => $this->id_name,
+            'latitude'  => $this->latitude,
+            'longitude' => $this->longitude,
             'city'      => new CityResource($this->city)
         ];
     }
